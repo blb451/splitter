@@ -1,0 +1,46 @@
+<%  @itracks = ITunes.music(@track.name) %>
+
+<div class='search-show' style='display:flex;'>
+
+  <div class='album-plugin' style='display:inline;'>
+    <%= image_tag "#{@track.album.images[1]["url"]}" %> <br />
+    <iframe src="https://embed.spotify.com/?uri=<%="#{@track.uri}"%>&view=coverart" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> <br />
+  </div>
+
+  <div class='search-results'>
+    <div class='search-result'>
+    <h3><%= @track.album.artists[0].name %><br />
+    <%= @track.album.name %> <br />
+    <%= @track.name %><br /></h3>
+    <h4 style='margin-top: 50px; text-align: center;'>Listen on: </h4>
+    <div class='search-links'>
+      <%=button_to @itracks['results'][0]['trackViewUrl'], class: 'btn-link', method: :get do %>
+        <i class="fa fa-apple" aria-hidden="true" style='color:white;'></i>
+      <% end %>
+      <%= button_to @track.external_urls.first[1], class: 'btn-link', method: :get do %>
+        <i class="fa fa-spotify" aria-hidden="true" style='color:#1DB954;'></i>
+      <% end %>
+      <%= button_to "http://www.youtube.com/results?search_query=#{@track.name}+
+          #{@track.album.name}+#{@track.album.artists[0].name}", class: 'btn-link', method: :post do %>
+        <i class="fa fa-youtube-play" aria-hidden="true" style='color:#E62117'></i>
+      <% end %>
+      </div>
+    </div>
+      <div class='form-container'>
+        <% if session[:search_type] == 'suggestion' %>
+          <%= form_tag music_choice_suggestions_path(session[:choice_id]), method: "post" do %>
+          <%= render 'track_form' %>
+          <%= submit_tag 'Suggest Music', class: "btn btn-success" %>
+          <%=button_tag 'Close', class: "btn btn-secondary"  %>
+        <% end %>
+        <% elsif session[:search_type] == 'music_choice' %>
+          <%= form_tag music_choices_path, method: "post" do %>
+            <%= render 'track_form' %>
+            <%=submit_tag 'Post Music', class: "btn btn-success" %>
+            <%=button_tag 'Close', class: "btn btn-secondary", data: {dismiss: "modal"} %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+
+</div>

@@ -1,0 +1,15 @@
+<div style='margin-top: 30px;'>
+  <%= image_tag @suggestion.album_art %> <br />
+  <iframe src="https://embed.spotify.com/?uri=<%="#{@suggestion.uri}"%>&view=coverart" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> <br />
+  <div class='search-links'>
+    <%=button_to @suggestion.apple_link, class: 'btn-link', method: :get do %>
+      <i class="fa fa-apple" aria-hidden="true" style='color:black;'></i>
+    <% end %>
+    <%= button_to @suggestion.spotify_link, class: 'btn-link', method: :get do %>
+      <i class="fa fa-spotify" aria-hidden="true" style='color:#1DB954;'></i>
+    <% end %>
+    <%= button_to @suggestion.youtube_link, class: 'btn-link', method: :post do %>
+      <i class="fa fa-youtube-play" aria-hidden="true" style='color:#E62117'></i>
+    <% end %>
+  </div>
+</div>

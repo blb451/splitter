@@ -1,0 +1,24 @@
+<% if user_signed_in? && can?(:stashed_music, @music_choice) %>
+  <% if @music_choice.stashed_for(current_user)&.persisted? %>
+  <%= button_to music_choice_stashed_music_path(@music_choice, @music_choice.stashed_for(current_user)),
+                                                class: 'tooltips',
+                                                title: 'Remove from Stash',
+                                                data: { toggle: 'tooltip',
+                                                placement: 'top' },
+                                                remote: true,
+                                                method: :delete do %>
+    <i class="fa fa-folder-open" aria-hidden="true"></i>
+    <% end %>
+
+  <% else %>
+  <%= button_to music_choice_stashed_musics_path(@music_choice),
+                                                class: 'tooltips',
+                                                title: 'Stash for Later',
+                                                data: { toggle: 'tooltip',
+                                                placement: 'top' },
+                                                remote: true,
+                                                method: :post do %>
+    <i class="fa fa-folder-open-o" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+<% end %>

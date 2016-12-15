@@ -1,0 +1,44 @@
+<h1 style='margin-left: 120px;'>Users matching: <%= (params[:search]) %></h1> <br />
+
+
+<% if @users %>
+  <% @users = Kaminari.paginate_array(@users).page(params[:page]).per(9) %>
+  <% @users.each do |user| %>
+    <% top_marks(user) %>
+    <div class ='user-show'>
+      <div class='user-info'>
+        <%= link_to user_path(user) do %>
+        <%= display_image(user) %>
+        <% end %>
+        <div class='user-text' style='margin-top: 7px;'>
+          Username: <%= user.username %> <br />
+          Joined: <%= user.created_at.strftime("%d %b. %Y")%>  <br />
+          Reputation: <%= user.reputation %> <br />
+          Posts: <%= user.music_choices.count %> <br />
+          Most Frequently Recommended: <%= @top_suggestion %><br />
+          Most Frequently Posted Artist: <%= @top_artist %><br />
+        </div>
+        <% if can? :follow, user %>
+          <% if (current_user.followed_users.ids).include? user.id %>
+            <% @follow = (Following.where("user_id = ? AND follower_id = ?", user,
+                                           current_user).first.id)%>
+            <%= button_to 'Unfollow', following_path(@follow), class: 'btn btn-success',
+                                                               method: :delete,
+                                                               data: { confirm: 'Are you sure?' } %>
+          <% else %>
+            <div class='form-container'>
+            <%= form_for @following do |f| %>
+              <%= hidden_field_tag :user_id, user.id %>
+              <%= f.submit 'Follow', class: 'btn btn-success' %>
+            <% end %>
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  <% end %>
+  <div class='user-pagination'>
+    <%= paginate @users %>
+  </div>
+<% end %>

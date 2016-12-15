@@ -1,0 +1,11 @@
+<div class='wallpaper'>
+  <div class='black-opacity'>
+    <div id='welcome-input'>
+      <h1>WELCOME TO SPLITTER</h1>
+      <h3>Sign in or register to get started.</h3>
+      <%= link_to 'Register', new_user_registration_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'Sign In', new_user_session_path, class: 'btn btn-primary btn-lg' %>
+      <%= link_to 'Sign in with Spotify', user_spotify_omniauth_authorize_path, class: 'btn btn-success btn-lg' %>
+    </div>
+  </div>
+</div>

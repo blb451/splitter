@@ -1,0 +1,55 @@
+<div class = "suggestion" id ="<%= dom_id(suggestion)%>">
+<div class='suggestion-flex'>
+  <div>
+    <%= link_to music_choice_suggestion_path(suggestion.music_choice, suggestion),
+                                              method: :get,
+                                              remote: true,
+                                              data: { toggle: "modal",
+                                                      target: "#suggestionModal" } do %>
+      <%= image_tag("#{suggestion.album_art}", height: '130', width: '130' ) %>
+    <% end %>
+  </div>
+
+<div class ='suggestion-data'>
+  <%= link_to suggestion.user.username, user_path(suggestion.user) %> suggested <br />
+  <%= link_to "#{get_music_name(suggestion)}",
+      music_choice_suggestion_path(suggestion.music_choice, suggestion),
+                                    method: :get,
+                                    remote: true,
+                                    data: { toggle: "modal",
+                                            target: "#suggestionModal" } %> <br />
+
+<% if suggestion.approved %>
+  <i class="fa fa-level-up" aria-hidden="true"></i>
+<% end %>
+
+<% if can? :like,suggestion%>
+  <% @suggestion_like = suggestion.like_for(current_user) %>
+  <% if @suggestion_like.present?  %>
+    <%= link_to suggestion_like_path(suggestion, @suggestion_like), method: :delete do %>
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+    <% end %>
+  <% else %>
+    <%= link_to suggestion_likes_path(suggestion), method: :post do %>
+      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+<% end %>
+
+<% if can? :delete,suggestion%>
+  <%= link_to music_choice_suggestion_path(suggestion), remote: true, method: :delete,
+                                               data: {confirm: 'Are you sure?'} do %>
+    <i class="fa fa-times" aria-hidden="true"></i> <br />
+  <% end %>
+<% end %>
+
+<% if can? :update,suggestion%>
+  <% if suggestion.approved?  %>
+    <%= link_to "Unapprove", music_choice_suggestion_path(suggestion), method: :patch %> <br /><br />
+  <% else %>
+    <%= link_to "Approve", music_choice_suggestion_path(suggestion), method: :patch %> <br /> <br />
+  <% end %>
+<% end %>
+</div>
+</div>
+</div>

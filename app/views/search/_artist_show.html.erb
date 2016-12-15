@@ -1,0 +1,60 @@
+<div class="spinner">
+  <%= image_tag 'music-loading.gif' %>
+  <p style='color: #93C54B;'> Searching... </p>
+</div>
+
+<% @iartists = ITunes.music(@artist.name) %>
+
+<div class='artist-show-page'>
+
+<div class='search-show' style='display:flex;'>
+
+  <div class='album-plugin' style='display:inline;'>
+    <%= image_tag "#{@artist.albums.first.images[1]["url"]}" %> <br />
+    <iframe src="https://embed.spotify.com/?uri=<%="#{@artist.uri}"%>&view=coverart" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> <br />
+  </div>
+
+  <div class='search-results'>
+    <div class='search-result'>
+    <h3>
+    <%= @artist.name %><br /></h3>
+    Album: <br />
+  <div class='show-listing'>
+    <% @artist.albums.each do |album| %>
+    <div class='album-track-name'><%= album.name %><%= link_to "Show", search_path(album.id, {:album_true => true}), remote: true %></div>
+    <% end %>
+  </div>
+    <h4 style='text-align: center;'>Listen on: </h4>
+    <div class='search-links'>
+      <%=button_to @iartists['results'][0]['trackViewUrl'], class: 'btn-link', method: :get do %>
+        <i class="fa fa-apple" aria-hidden="true" style='color:white;'></i>
+      <% end %>
+      <%= button_to @artist.external_urls.first[1], class: 'btn-link', method: :get do %>
+        <i class="fa fa-spotify" aria-hidden="true" style='color:#1DB954;'></i>
+      <% end %>
+      <%= button_to "http://www.youtube.com/results?search_query=#{@artist.name}",
+          class: 'btn-link', method: :post do %>
+        <i class="fa fa-youtube-play" aria-hidden="true" style='color:#E62117'></i>
+      <% end %>
+      </div>
+    </div>
+      <div class='form-container'>
+        <% if session[:search_type] == 'suggestion' %>
+          <%= form_tag music_choice_suggestions_path(session[:choice_id]), method: "post" do %>
+          <%= render 'artist_form' %>
+          <%= submit_tag 'Suggest Music', class: "btn btn-success" %>
+          <%=button_tag 'Close', class: "btn btn-secondary"  %>
+        <% end %>
+        <% elsif session[:search_type] == 'music_choice' %>
+          <%= form_tag music_choices_path, method: "post" do %>
+            <%= render 'artist_form' %>
+            <%=submit_tag 'Post Music', class: "btn btn-success" %>
+            <%=button_tag 'Close', class: "btn btn-secondary", data: {dismiss: "modal"} %>
+          <% end %>
+        <% end %>
+      </div>
+  </div>
+
+</div>
+
+</div>

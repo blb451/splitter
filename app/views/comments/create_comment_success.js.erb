@@ -1,0 +1,4 @@
+$('#longtext').val('');
+$('#shorttext').val('');
+$('#comments').append('<%= j render 'comments/comment', comment: @comment %>');
+<% @comment = Comment.new %>

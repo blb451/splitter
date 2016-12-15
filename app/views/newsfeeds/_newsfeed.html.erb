@@ -1,0 +1,69 @@
+<div class=“newsfeed”>
+    <% case newsfeed.posttype %>
+      <% when 'suggestion' %>
+      <div class= 'news-feed-join' style='display: flex; margin-bottom: 10px; margin-top: 10px;'>
+        <div class= 'news-feed-image' style='float:left;'>
+          <%= display_image_newsfeed(newsfeed) %>
+        </div>
+        <div class= 'news-feed-text' style='float:right; margin-left: 5px;'>
+          <%=link_to "#{newsfeed.first_user}", user_path("#{newsfeed.first_user_id}")%> suggested
+          <%=link_to "#{newsfeed.first_subject}",
+          music_choice_suggestion_path(newsfeed.second_subject_id, newsfeed.first_subject_id), method: :get, remote: true,
+          data: { toggle: "modal", target: "#suggestionModal" } %> for
+          <%=link_to "#{newsfeed.second_user}", user_path("#{newsfeed.second_user_id}")%>'s
+          <%=link_to "post", music_choice_path("#{newsfeed.second_subject_id}")%><br /><br />
+        </div>
+      </div>
+
+      <% when 'comment' %>
+      <div class= 'news-feed-join' style='display: flex; margin-bottom: 10px; margin-top: 10px;'>
+        <div class= 'news-feed-image' style='float:left;'>
+          <%= display_image_newsfeed(newsfeed) %>
+        </div>
+        <div class= 'news-feed-text' style='float:right; margin-left: 5px;'>
+          <%=link_to "#{newsfeed.first_user}", "#{newsfeed.first_user_id}"%> commented on
+          <%=link_to "#{newsfeed.second_user}", "#{newsfeed.second_user_id}"%>'s
+          <%=link_to "post", music_choice_path("#{newsfeed.second_subject_id}")%>:
+          <strong>"<%= newsfeed.first_subject %>"</strong><br /><br />
+        </div>
+      </div>
+
+      <% when 'like' %>
+      <div class= 'news-feed-join' style='display: flex; margin-bottom: 10px; margin-top: 10px;'>
+        <div class= 'news-feed-image' style='float:left;'>
+          <%= display_image_newsfeed(newsfeed) %>
+        </div>
+        <div class= 'news-feed-text' style='float:right; margin-left: 5px;'>
+          <%=link_to "#{newsfeed.first_user}", user_path("#{newsfeed.first_user_id}")%> liked
+            <%=link_to "#{newsfeed.second_user}", user_path("#{newsfeed.second_user_id}")%>'s
+          <%=link_to "#{newsfeed.first_subject}", music_choice_path("#{newsfeed.first_subject_id}")%><br /><br />
+        </div>
+      </div>
+
+      <% when 'music_choice' %>
+      <div class= 'news-feed-join' style='display: flex; margin-bottom: 10px; margin-top: 10px;'>
+        <div class= 'news-feed-image' style='float:left;'>
+          <%= display_image_newsfeed(newsfeed) %>
+        </div>
+        <div class= 'news-feed-text' style='float:right; margin-left: 5px;'>
+          <%=link_to "#{newsfeed.first_user}", user_path("#{newsfeed.first_user_id}")%> is listening to
+          <%=link_to "#{newsfeed.first_subject}", music_choice_path("#{newsfeed.first_subject_id}")%> <br /><br />
+        </div>
+      </div>
+
+      <% when 'approval' %>
+      <div class= 'news-feed-join' style='display: flex; margin-bottom: 10px; margin-top: 10px;'>
+        <div class= 'news-feed-image' style='float:left;'>
+          <%= display_image_newsfeed(newsfeed) %>
+        </div>
+        <div class= 'news-feed-text' style='float:right; margin-left: 5px;'>
+          <%=link_to "#{newsfeed.first_user}", user_path("#{newsfeed.first_user_id}")%> approved
+            <%=link_to "#{newsfeed.second_user}", user_path("#{newsfeed.second_user_id}")%>'s
+            <%=link_to "suggestion",
+            music_choice_suggestion_path(newsfeed.second_subject_id, newsfeed.first_subject_id), method: :get, remote: true,
+            data: { toggle: "modal", target: "#suggestionModal" } %>
+        </div>
+      </div>
+    <% end %>
+
+</div>

@@ -1,0 +1,47 @@
+<% @top_users = Kaminari.paginate_array(@top_users).page(params[:page]).per(14) %>
+<br />
+
+<div class='album-layout'>
+  <% @top_users.each do |m| %>
+  <% if m.music_choices.count > 0 %>
+    <figure style="width: 300px; height: 300px; float: left; margin-right: 20px; margin-bottom: 80px;">
+       <%=link_to image_tag("#{m.music_choices.last.album_art}"), music_choice_path(m.music_choices.last.id)%>
+       <figcaption>
+         <p>
+           <%= m.music_choices.last.artist %>  <br />
+           <%= m.music_choices.last.album %> <br />
+           <%= m.music_choices.last.track %>
+         </p>
+       </figcaption>
+       <figname>
+         <%= display_image_mail(m) %>
+         <%= link_to m.username, user_path(m.id) %>
+         <i class="fa fa-star" aria-hidden="true"></i> <%= m.reputation %>
+       </figname>
+       <figbuttons style='float:right; margin:0px;'>
+         <% if can? :like, m.music_choices.last %>
+           <% @music_choice_like = m.music_choices.last.like_for(current_user) %>
+           <% if @music_choice_like.present? %>
+             <%= link_to music_choice_like_path(m.music_choices.last, @music_choice_like), method: :delete do %>
+             <i class="fa fa-check-square" aria-hidden="true"></i>
+             <% end %>
+           <% else %>
+             <%= link_to music_choice_likes_path(m.music_choices.last), method: :post do %>
+             <i class="fa fa-check-square-o" aria-hidden="true"></i>
+             <% end %>
+           <% end %>
+         <% end %>
+         <% if can? :stashed_music, m.music_choices.last %>
+           <%= link_to music_choice_stashed_musics_path(m), method: :post do %>
+             <i class="fa fa-archive" aria-hidden="true"></i>
+           <% end %>
+          <% end %>
+       </figbuttons>
+     </figure>
+   <% end %>
+   <% end %>
+ </div>
+ <div class='user-pagination'>
+  <%= paginate @top_users %>
+</div>
+</div>

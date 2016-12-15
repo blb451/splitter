@@ -1,0 +1,40 @@
+<div class="spinner">
+  <%= image_tag 'music-loading.gif' %>
+  <p style='color: #93C54B;'> Searching... </p>
+</div>
+
+<div class='index-list'>
+  <% if @artists %>
+    <h1 class="page-header">Artists Matching <%= params[:name] %></h1>
+    <ul>
+     <% @artists.each do |artist| %>
+       <li><%= artist.name %> | <%= link_to "Show", search_path(artist.id,
+                                 {artist_true: true}), remote: true %></li>
+     <% end %>
+    </ul>
+  <% end %>
+
+  <% if @albums %>
+    <h1 class="page-header">Albums Matching <%= params[:name] %></h1>
+    <ul>
+     <% @albums.each do |album| %>
+       <li><%= album.name %> by <%= album.artists[0].name %> | <%= link_to "Show",
+       search_path(album.id, {album_true: true}), remote: true %></li>
+     <% end %>
+    </ul>
+  <% end %>
+
+  <% if @tracks %>
+    <h1 class="page-header">Tracks Matching <%= params[:name] %></h1>
+    <ul>
+     <% @tracks.each do |track| %>
+       <li><%= track.name %> by <%= track.album.artists[0].name %> | <%= link_to "Show",
+        search_path(track.id, {track_true: true}), remote: true %></li>
+     <% end %>
+    </ul>
+  <% end %>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  </div>
+</div>

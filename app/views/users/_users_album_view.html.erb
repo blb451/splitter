@@ -1,0 +1,44 @@
+<div id='users-album-view' class="collapsible-list-toggle">
+
+  <% if !can? :follow, @user %>
+    <div style='text-align: center; margin: 5px; margin-bottom:15px;'>
+      <a class="btn btn-success users-followers-link">Followers</a>
+      <a class="btn btn-success users-following-link">Following</a>
+    </div>
+  <% end %>
+
+
+  <% @music_choices = Kaminari.paginate_array(@music_choices).page(params[:page]).per(9) %>
+    <div class='musicpage'>
+      <% @music_choices.each do |m| %>
+        <figure style="width: 300px; height: 300px; float: left; margin-right: 20px; margin-bottom:40px;">
+          <%=link_to image_tag("#{m.album_art}"), music_choice_path(m.id)%>
+          <figcaption><p>
+             <%= m.artist %>  <br /> <%= m.album %> <br /> <%= m.track %>
+          </p></figcaption>
+          <div class=username style='font-size: 25px; color: #6B9430;'>
+            <% if can? :like, m %>
+              <% @music_choice_like = m.like_for(current_user) %>
+              <% if @music_choice_like.present? %>
+                <%= link_to music_choice_like_path(m, @music_choice_like), method: :delete do %>
+                <i class="fa fa-check-square" aria-hidden="true"></i>
+                <% end %>
+              <% else %>
+                <%= link_to music_choice_likes_path(m), method: :post do %>
+                <i class="fa fa-check-square-o" aria-hidden="true"></i>
+                <% end %>
+              <% end %>
+            <% end %>
+            <% if can? :stashed_music, m %>
+              <%= link_to music_choice_stashed_musics_path(m), method: :post do %>
+                <i class="fa fa-archive" aria-hidden="true"></i>
+              <% end %>
+            <% end %>
+          </figure>
+      <% end %>
+    </div>
+    <div class='user-pagination'>
+      <%= paginate @music_choices %>
+    </div>
+
+</div>

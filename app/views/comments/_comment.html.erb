@@ -1,0 +1,23 @@
+<div class = "comment" id ="<%= dom_id(comment)%>">
+ <%= display_image_mail(comment.user) %>
+ <%= link_to comment.user.username, user_path(comment.user) %>:
+ <strong>"<%= "#{comment.body} "%>"</strong> -
+ <% if can? :like, comment %>
+   <% @comment_like = comment.like_for(current_user) %>
+   <% if @comment_like.present?  %>
+     <%= link_to comment_like_path(comment, @comment_like), method: :delete do %>
+       <i class="fa fa-check-square" aria-hidden="true"></i>
+     <% end %>
+   <% else %>
+     <%= link_to comment_likes_path(comment), method: :post do %>
+       <i class="fa fa-check-square-o" aria-hidden="true"></i>
+     <% end %>
+   <% end %>
+ <% end %>
+ <% if can? :delete, comment %>
+   <%= link_to music_choice_comment_path(comment.music_choice, comment), method: :delete, remote: true,
+                                             data: {confirm: 'Are you sure?'} do %>
+     <i class="fa fa-times" aria-hidden="true"></i> <br />
+   <% end %>
+ </div>
+ <% end %>

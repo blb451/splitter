@@ -1,0 +1,38 @@
+<div class="media">
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <%= render 'mailbox/folders' %>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-8">
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="media">
+        <div class="media-body">
+          <% @notifications.each do |notification| %>
+            <% if !notification.is_read?(current_user) %>
+              <div class='pull-left' style='margin-right: 10px;'>
+                <%= display_image_mail(notification.object) %>
+              </div>
+            <h4 class="media-heading">
+              <%= notification.body %> <br />
+              <small><b>Date: </b>
+              <%=notification.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %>
+              </small> <br />
+              <%= link_to notification_read_path(notification), method: :get do %>
+                <i class="fa fa-check-square" aria-hidden="true" style='font-size: 25px;'></i> <br /><br />
+              <% end %>
+            <% end %>
+            </h4>
+            <% end %>
+        </div>
+        <%= button_to "Mark all as Read", notification_all_read_path(@notifications),
+                      class: "btn btn-success pull-right", method: :get %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

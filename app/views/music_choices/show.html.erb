@@ -1,0 +1,38 @@
+<showpage>
+
+  <div class='album-layout show-layout col-md-5'>
+    <figure>
+      <figname>
+        <%= link_to @music_choice.user.username, user_path(@music_choice.user.id) %>
+      </figname>
+      <%=image_tag("#{@music_choice.album_art}")%>
+      <figcaption>
+        <p>
+          <%= get_music_name(@music_choice) %>
+        </p>
+      </figcaption>
+      <% if @music_choice.uri != nil %>
+        <iframe src="https://embed.spotify.com/?uri=<%="#{@music_choice.uri}"%>&view=coverart" width="300" height="80" frameborder="0" allowtransparency="true"></iframe> <br />
+        <showbuttons>
+          <%= render '/comments/form' %>
+        </showbuttons>
+      <% end %>
+      <comments id='comments'>
+        <% @music_comments.each do |comment| %>
+         <%= render '/comments/comment', { comment: comment } %>
+        <% end %>
+      </comments><br /><br /><br /><br /><br /><br /><br />
+    </figure>
+  </div>
+
+  <% if @music_choice.suggestions.count > 0 %>
+
+  <div id='suggestions' class='col-md-3'>
+    <% @music_suggestions.each do |suggestion| %>
+      <%= render '/suggestions/suggestion', { suggestion: suggestion } %>
+    <% end %>
+  </div>
+
+  <% end %>
+
+</showpage>

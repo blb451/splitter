@@ -1,0 +1,31 @@
+<div style='float:right;'>
+  <% if conversation.is_trashed?(current_user) %>
+    <%= link_to untrash_conversation_path(conversation), method: :post do%>
+      <em class="fa fa-refresh fa-lg"></em>
+    <% end %>
+  <% else %>
+    <%= link_to trash_conversation_path(conversation), method: :post,
+        data: {confirm: 'Are you sure?'} do %>
+      <em class="fa fa-trash fa-lg"></em>
+    <% end %>
+  <% end %>
+</div>
+
+<% @receipts.each do |receipt| %>
+    <% message = receipt.message %>
+    <div class="media">
+      <div class="media-left">
+        <a href="#">
+          <%= display_image_mail(message.sender) %>
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          <%= message.sender.username %> <br>
+          <small><b>Subject: </b><%= message.subject %></small><br>
+          <small><b>Date: </b><%=  message.created_at.strftime("%A, %b %d, %Y at %I:%M%p") %></small>
+        </h4>
+        <%= message.body %>
+      </div>
+    </div>
+<% end %>

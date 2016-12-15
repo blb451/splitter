@@ -1,0 +1,7 @@
+<%= hidden_field_tag :artist, @artist.name %>
+<%= hidden_field_tag :album_art, @artist.albums[0].images[1]["url"] %>
+<%= hidden_field_tag :uri, @artist.uri %>
+<%= hidden_field_tag :search_id, params[:id] %>
+<%= hidden_field_tag :apple_link, @iartists['results'][0]['trackViewUrl'] %>
+<%= hidden_field_tag :spotify_link, @artist.external_urls.first[1] %>
+<%= hidden_field_tag :youtube_link,  "http://www.youtube.com/results?search_query=#{@artist.name}" %>

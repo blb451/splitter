@@ -1,0 +1,103 @@
+body {
+  margin: 0;
+  padding: 0;
+  overflow-wrap: break-word;
+}
+
+img {
+  padding: 0;
+}
+
+
+figure {
+  position: relative;
+  display: block;
+  margin: 5px 0 25px 0;
+  width: 300px;
+  height: 300px;
+  float: left;
+  margin-right: 20px;
+  margin-bottom: 80px;
+}
+
+figure a:hover {
+  text-decoration: none;
+}
+
+figure p {
+  font-size: 14px;
+  font-weight: 100;
+}
+
+figcaption {
+  position: absolute;
+  text-align: left;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  font-size: .7em;
+  color: #fff;
+  background-color: rgba(0,0,0,.7);
+  opacity: 0;
+  -webkit-transition: opacity .5s ease-in-out;
+  -moz-transition: opacity .5s ease-in-out;
+  -o-transition: opacity .5s ease-in-out;
+  transition: opacity .5s ease-in-out;
+}
+
+
+figure:hover figcaption {
+  opacity: 1;
+}
+
+figcaption * {
+  padding: 0 10px;
+  margin: 0;
+}
+
+figcaption *:first-child {
+  padding-top: 5px;
+}
+figcaption *:last-child {
+  padding-bottom: 5px;
+}
+
+figcaption, h1, h2, h3, h4 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+figname {
+  display: inline;
+  font-weight: bold;
+  text-align: center;
+  padding: 0;
+  width: 300px;
+  font-size: 16px;
+}
+
+figname img {
+  height: 42px;
+  width: 42px;
+  border: .5px solid #dfd7ca;
+}
+
+figbuttons {
+  font-size: 25px;
+  color: #6B9430;
+  display: inline;
+  margin-left: 110px;
+}
+
+.btn-success:hover {
+  cursor: pointer;
+}
+
+.album-layout {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.news-box{
+  overflow-wrap: break-word;
+}

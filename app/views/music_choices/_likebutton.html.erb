@@ -1,0 +1,26 @@
+<% @music_choice ||= @likeable %>
+
+<% if user_signed_in? && can?(:like, @music_choice) %>
+  <% if @music_choice.like_for(current_user)&.persisted? %>
+    <%= button_to music_choice_like_path(@music_choice, @music_choice.like_for(current_user)),
+                                                  class: 'tooltips',
+                                                  title: 'Unlike',
+                                                  data: { toggle: 'tooltip',
+                                                  placement: 'top' },
+                                                  remote: true,
+                                                  method: :delete do %>
+      <i class="fa fa-check-square" aria-hidden="true"></i>
+      <% end %>
+
+  <% else %>
+    <%= button_to music_choice_likes_path(@music_choice),
+                                                  class: 'tooltips',
+                                                  title: 'Like',
+                                                  data: { toggle: 'tooltip',
+                                                  placement: 'top' },
+                                                  remote: true,
+                                                  method: :post do %>
+      <i class="fa fa-check-square-o" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+<% end %>

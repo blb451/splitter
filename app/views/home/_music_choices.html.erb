@@ -1,0 +1,43 @@
+<div class='album-layout'>
+  <% @music_choices.each do |m| %>
+    <figure style="width: 300px; height: 300px; float: left; margin-right: 20px; margin-bottom: 80px;">
+       <%=link_to image_tag("#{m.album_art}"), music_choice_path(m.id)%>
+       <figcaption>
+         <p>
+           <%= m.artist %>  <br /> <%= m.album %> <br /> <%= m.track %>
+         </p>
+       </figcaption>
+       <figname>
+         <%= display_image_mail(m.user) %>
+         <%= link_to m.user.username, user_path(m.user.id) %>
+       </figname>
+       <figbuttons>
+         <% if can? :like, m %>
+           <% @music_choice_like = m.like_for(current_user) %>
+           <% if @music_choice_like.present? %>
+             <%= link_to music_choice_like_path(m, @music_choice_like), method: :delete do %>
+             <i class="fa fa-check-square" aria-hidden="true"></i>
+             <% end %>
+           <% else %>
+             <%= link_to music_choice_likes_path(m), method: :post do %>
+             <i class="fa fa-check-square-o" aria-hidden="true"></i>
+             <% end %>
+           <% end %>
+         <% end %>
+         <% if can? :stashed_music, m %>
+           <% @music_choice_stash = m.stashed_for(current_user) %>
+           <% if !@music_choice_stash.present? %>
+             <%= link_to music_choice_stashed_musics_path(m), method: :post do %>
+               <i class="fa fa-folder-open-o" " aria-hidden="true"></i>
+             <% end %>
+           <% else %>
+           <%= link_to music_choice_stashed_music_path(m, m.stashed_for(current_user)),
+                                                         method: :delete do %>
+             <i class="fa fa-folder-open" aria-hidden="true"></i>
+             <% end %>
+           <% end %>
+          <% end %>
+       </figbuttons>
+     </figure>
+   <% end %>
+ </div>

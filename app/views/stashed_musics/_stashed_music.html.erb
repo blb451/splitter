@@ -1,0 +1,29 @@
+  <div id ="<%= dom_id(s)%>">
+    <figure style="width: 300px; height: 300px; float: left; margin-right: 20px; margin-bottom: 80px;">
+       <%=link_to image_tag("#{s.music_choice.album_art}"), music_choice_path(s.music_choice.id)%>
+       <figcaption>
+         <p>
+           <%= s.music_choice.artist %>  <br />
+           <%= s.music_choice.album %> <br />
+           <%= s.music_choice.track %>
+         </p>
+       </figcaption>
+       <figbuttons style='display:flex; flex-direction: row; margin: 0px; justify-content: center;'>
+         <%= button_to s.music_choice.apple_link, class: 'btn-link', method: :post do %>
+           <i class="fa fa-apple" aria-hidden="true"></i>
+         <% end %>
+         <%= button_to s.music_choice.spotify_link, class: 'btn-link', method: :get do %>
+           <i class="fa fa-spotify" aria-hidden="true" ></i>
+         <% end %>
+         <%= button_to s.music_choice.youtube_link, class: 'btn-link', method: :post do %>
+           <i class="fa fa-youtube-play" aria-hidden="true" ></i>
+         <% end %>
+         <%= button_to music_choice_stashed_music_path(s.music_choice, s),
+             class: 'btn-link',
+             remote: true,
+             method: :delete do %>
+             <i class="fa fa-trash" aria-hidden="true" style='color: black;'></i>
+           <% end %>
+       </figbuttons>
+     </figure>
+  </div>

@@ -1,0 +1,12 @@
+$("<%=j render(:partial => 'music_choices', :object => @music_choices) %>")
+  .appendTo($(".music-table table"));
+
+$("<%=j render(:partial => 'newsfeeds/newsfeed_append', :object => @combined_news) %>")
+  .appendTo($(".news-table"));
+
+<% if @music_choices.last_page? %>
+  $('.musicpagination').html('');
+<% else %>
+  $('.musicpagination')
+    .html("<%=j link_to_next_page(@music_choices, 'Next Page', :remote => true) %>");
+<% end %>

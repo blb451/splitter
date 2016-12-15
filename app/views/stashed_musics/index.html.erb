@@ -1,0 +1,13 @@
+<div class="stashed_music">
+  <div class='album-layout'>
+  <% @stashed_music.each do |s| %>
+    <%= render '/stashed_musics/stashed_music', { s: s } %>
+  <% end %>
+</div>
+</div>
+<%= paginate @stashed_music %>
+<% if current_user.stashed_musics.count == 0 %>
+  <div class='empty-message'>
+    Stash is empty!
+  </div>
+<% end %>
