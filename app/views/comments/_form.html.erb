@@ -1,43 +1,43 @@
 <div id='likebutton'>
   <%= render '/music_choices/likebutton' %>
 </div>
-    <% if can? :suggestion, @music_choice %>
-      <span class='tooltips'title='Make a Suggestion' data-toggle='tooltip' placement= 'top' }>
-        <%= button_to new_search_path({type: 'suggestion',
-                                      choice_id: @music_choice.id}),
-                                      method: :get,
-                                      remote: true,
-                                      data: { toggle: "modal",
-                                      target: "#myModal" } do %>
-          <i class="fa fa-bullhorn" aria-hidden="true"></i>
-      <% end %>
-      </span>
+<% if can? :suggestion, @music_choice %>
+  <span class='tooltips'title='Make a Suggestion' data-toggle='tooltip' placement= 'top' }>
+    <%= button_to new_search_path({type: 'suggestion',
+                                  choice_id: @music_choice.id}),
+                                  method: :get,
+                                  remote: true,
+                                  data: { toggle: "modal",
+                                  target: "#myModal" } do %>
+      <i class="fa fa-bullhorn" aria-hidden="true"></i>
     <% end %>
-    <div id='stashbutton'>
-      <%= render '/stashed_musics/stashbutton' %>
-    </div>
-      <%= form_for [@music_choice, @comment], remote: true do |c| %>
-        <% if @music_choice.user == current_user %>
-          <%= c.text_area :body, id: 'longtext' %>
-        <% else %>
-          <%= c.text_area :body, id: 'shorttext' %>
-        <% end %>
-          <%= button_tag id: 'commentbutton',
-                         class: 'tooltips',
-                         title: 'Comment',
-                         data: { toggle: 'tooltip',
-                         placement: 'top' } do %>
-            <i class="fa fa-commenting-o" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
-        <% if can? :modify, @music_choice %>
-          <%= button_to music_choice_path(@music_choice),
-                                          class: 'tooltips',
-                                          title: 'Delete this Post',
-                                          data: { toggle: 'tooltip',
-                                          placement: 'top',
-                                          confirm: 'Are you sure?' },
-                                          method: :delete do %>
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          <% end %>
-        <% end %>
+  </span>
+<% end %>
+<div id='stashbutton'>
+  <%= render '/stashed_musics/stashbutton' %>
+</div>
+<%= form_for [@music_choice, @comment], remote: true do |c| %>
+  <% if @music_choice.user == current_user %>
+    <%= c.text_area :body, id: 'longtext' %>
+  <% else %>
+    <%= c.text_area :body, id: 'shorttext' %>
+  <% end %>
+    <%= button_tag id: 'commentbutton',
+                   class: 'tooltips',
+                   title: 'Comment',
+                   data: { toggle: 'tooltip',
+                   placement: 'top' } do %>
+      <i class="fa fa-commenting-o" aria-hidden="true"></i>
+    <% end %>
+  <% end %>
+  <% if can? :modify, @music_choice %>
+      <%= button_to music_choice_path(@music_choice),
+                                      class: 'tooltips',
+                                      title: 'Delete this Post',
+                                      data: { toggle: 'tooltip',
+                                      placement: 'top',
+                                      confirm: 'Are you sure?' },
+                                      method: :delete do %>
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      <% end %>
+  <% end %>

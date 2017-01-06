@@ -1,0 +1,24 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  margin-top: 140px;
+}
+
+.login-form {
+  background-color: white;
+  border: .5px solid #dfd7ca;
+  width: 400px;
+  height: 550px;
+  display: flex;
+  justify-content: center;
+}
+
+.login-centered {
+  margin-top: 40px;
+  margin-left: 60px;
+}
+
+.login-centered input {
+  width: 270px;
+  margin: 0px;
+}

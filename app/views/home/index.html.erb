@@ -10,11 +10,10 @@
         <table>
           <%= render :partial => 'music_choices', :object => @music_choices %>
         </table>
-        <p class="musicpagination" style= 'margin-left: 90px;'>
+        <p class="musicpagination">
           <%= link_to_next_page(@music_choices, 'Next Page', remote: true) %>
         </p>
       </div>
-
 
       <div class='news-box news-table col-md-3' style='margin-right: 40px;'>
         <div id="combined_news"> <%= render @combined_news %> </div>
@@ -22,9 +21,12 @@
             <%= link_to_next_page(@combined_news, 'Next Page') %>
           </p>
       </div>
+
     </div>
+
   <% elsif user_signed_in? && current_user.music_choices.count == 0 %>
-    <h1 style='font-weight: bold; margin-top:100px; text-align: center;'>Nothing to see yet. Post some music or follow a friend to get started.</h1>
+    <h1 style='font-weight: bold; margin-top:100px; text-align: center;'>
+      Nothing to see yet. Post some music or follow a friend to get started.</h1>
   <% else %>
     <%= render partial: 'sign_in' %>
   <% end %>

@@ -1,0 +1,25 @@
+.alert-alert {
+  @extend .alert-warning;
+}
+
+.alert-notice {
+  @extend .alert-info;
+}
+
+.alert-warning, .alert-alert {
+ background-image: -webkit-linear-gradient(top, #c63929 0%, #E84C3D 100%)!important;
+ background-image: -o-linear-gradient(top, #c63929 0%, #E84C3D 100%)!important;
+ background-image: linear-gradient(to bottom, #c63929 0%, #E84C3D 100%)!important;
+ background-repeat: repeat-x;
+ border-color: #c63929;
+}
+
+.alert-success,  .alert-info, .alert-notice {
+   background-image: -webkit-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%) !important;
+   background-image: -o-linear-gradient(top, #dff0d8 0%, #c8e5bc 100%) !important;
+   background-image: linear-gradient(to bottom, #dff0d8 0%, #c8e5bc 100%)!important;
+   background-repeat: repeat-x;
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FFDFF0D8', endColorstr='#FFC8E5BC', GradientType=0);
+   border-color: #b2dba1;
+   color: black;
+}

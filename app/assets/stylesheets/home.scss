@@ -101,3 +101,107 @@ figbuttons {
 .news-box{
   overflow-wrap: break-word;
 }
+
+.news-feed-text {
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+body {
+  background-color: #EEEEEE;
+  margin-bottom: 50px;
+}
+
+
+.news-table img {
+  border: .5px solid #dfd7ca;
+  height: 40px;
+  width: 40px;
+}
+
+.news-table a {
+  font-weight: bold;
+}
+
+.musicpagination {
+  margin-left: 90px;
+}
+
+
+div {
+  border-radius: 0px !important;
+}
+
+.current-avatar {
+  background-color: white;
+  border: .5px solid #dfd7ca;
+  margin: 5px 0px 5px 0px;
+  width: 132px;
+}
+
+.current-avatar img {
+  margin: 10px;
+}
+
+#or {
+  margin: 0px;
+  padding: 0px;
+  margin-left: 125px;
+  margin-top: 10px;
+}
+
+.wallpaper {
+  background-image: url('/assets/welcome-wallpaper.jpg');
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+}
+
+.black-opacity {
+  z-index: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  background-color: rgba(0, 0, 0, .6);
+  display: flex;
+  justify-content: center;
+}
+
+#welcome-input {
+  justify-content: center;
+  margin-top: 10%;
+  text-align: center;
+  color: white;
+}
+
+#welcome-input h1 {
+  color: white;
+  font-family: Helvetica;
+  border: 1px solid white;
+  padding: 20px;
+}
+
+.stashed_music {
+  margin-top: 60px;
+}
+
+.stashed_music table {
+  border: 1px solid #dfd7ca;
+}
+
+.stashed_music td {
+  color: #93C54B;
+  background-color: white;
+  // background-color: #2F2F2F;
+  font-size: 18px;
+  width: 250px;
+}
+
+.suggestion-modal-buttons form {
+  display: inline;
+}

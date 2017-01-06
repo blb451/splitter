@@ -1,0 +1,73 @@
+.modal-content  {
+    -webkit-border-radius: 0px !important;
+    -moz-border-radius: 0px !important;
+    border-radius: 0px !important;
+}
+
+.modal .form-container {
+  bottom: 20px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  width: 100%;
+}
+
+.modal .show-listing {
+  height: 100px;
+  overflow: scroll;
+  background-color: white;
+  color: black;
+}
+
+.modal .show-listing a{
+  float: right;
+  margin-right: 10px;
+}
+
+.modal .button_to {
+  width: 40px;
+}
+
+.search-results {
+  background-color:#282828;
+  color:white; width:300px!important;
+  height:380px;
+  overflow:auto;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.search-result {
+  padding: 10px;
+}
+
+.modal .search-links {
+  font-size: 30px;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.modal form {
+  display: flex;
+  width: 100%;
+}
+
+.modal .form-container .btn {
+  height: 80px;
+  margin: 0;
+  padding: 0;
+  flex-basis: 50%;
+}
+
+.modal .form-container .submit {
+  width: 147px;
+  height: 80px;
+  margin: 0;
+  padding: 0;
+}
+
+.suggestion-modal-buttons {
+  display: inline;
+}

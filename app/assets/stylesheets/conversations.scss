@@ -1,10 +1,17 @@
-// Place all the styles related to the conversations controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 .unread {
   background-color: #F8F5F0;
   border: 1px #DFD7CA solid;
   border-radius: 5px;
   padding: 3px;
+}
+
+.empty-message {
+  font-weight: bold;
+  margin-top:100px;
+  text-align: center;
+  background-color: white;
+  border: .5px solid #dfd7ca;
+  width: 700px;
+  font-size: 35px;
+  margin-left: 200px;
 }

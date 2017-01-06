@@ -11,7 +11,7 @@
   </div>
 
 <div class ='suggestion-data'>
-  <%= link_to suggestion.user.username, user_path(suggestion.user) %> suggested <br />
+  <%= link_to suggestion.user.username, user_path(suggestion.user) %><br /> suggested <br />
   <%= link_to "#{get_music_name(suggestion)}",
       music_choice_suggestion_path(suggestion.music_choice, suggestion),
                                     method: :get,
@@ -19,9 +19,6 @@
                                     data: { toggle: "modal",
                                             target: "#suggestionModal" } %> <br />
 
-<% if suggestion.approved %>
-  <i class="fa fa-level-up" aria-hidden="true"></i>
-<% end %>
 
 <% if can? :like,suggestion%>
   <% @suggestion_like = suggestion.like_for(current_user) %>
