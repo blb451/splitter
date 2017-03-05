@@ -1,6 +1,6 @@
 class ChangeTypeColumnInNewsfeed < ActiveRecord::Migration[5.0]
   def up
-    rename_column :newsfeeds, :type, :posttype
+    add_column :newsfeeds, :posttype
   end
 
   def down
