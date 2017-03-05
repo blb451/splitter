@@ -1,4 +1,4 @@
-class NewsfeedBroadcastJob < ApplicationJob
+class NewsfeedBroadcastJob < ActiveJob::Base
   queue_as :default
 
   def perform(newsfeed)
