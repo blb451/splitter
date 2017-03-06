@@ -28,12 +28,12 @@
                                                                method: :delete,
                                                                data: { confirm: 'Are you sure?' } %>
           <% else %>
-            <div class='form-container'>
+
             <%= form_for @following do |f| %>
               <%= hidden_field_tag :user_id, user.id %>
-              <%= f.submit 'Follow', class: 'btn btn-success' %>
+              <%= f.submit 'Follow', class: 'btn btn-success', id: 'follow_button' %>
             <% end %>
-            </div>
+
           <% end %>
         <% end %>
       </div>
