@@ -15,7 +15,7 @@ class User < ApplicationRecord
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :confirmable, :lockable, :omniauthable, :omniauth_providers => [:spotify]
+         :lockable, :omniauthable, :omniauth_providers => [:spotify]
 
   validates :username, uniqueness: {case_sensitive: false }, length: { minimum: 3, maximum: 10 }
 
