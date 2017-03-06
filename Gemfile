@@ -36,6 +36,7 @@ gem 'fog'
 gem 'fog-aws'
 gem 'rack-cors'
 gem 'cors'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug', platform: :mri
