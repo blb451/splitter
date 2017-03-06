@@ -1,6 +1,6 @@
 <% @top_users = Kaminari.paginate_array(@top_users).page(params[:page]).per(14) %>
 <br />
-
+<h3 style="text-align: center;">Top Users</h3>
 <div class='album-layout'>
   <% @top_users.each do |m| %>
   <% if m.music_choices.count > 0 %>
