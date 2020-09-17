@@ -68,7 +68,7 @@ GEM
       activemodel (>= 4.0.0)
       activesupport (>= 4.0.0)
       mime-types (>= 1.16)
-    chartkick (2.2.3)
+    chartkick (3.4.0)
     choice (0.2.0)
     chosen-rails (1.5.2)
       coffee-rails (>= 3.2)
